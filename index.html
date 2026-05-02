@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LAMPA COMMUNITY</title>
+    <link rel="stylesheet" href="styles.css" /> <!-- Подключаем CSS -->
+</head>
+<body>
+
+<header>
+    <h1>LAMPA COMMUNITY</h1>
+    <div class="profile-section">
+        <span id="username-display">Гость</span>
+        <button id="edit-profile-btn">Редактировать профиль</button>
+        <button id="logout-btn">Выйти</button> <!-- Пример кнопки выхода -->
+    </div>
+</header>
+
+<main>
+    <section id="create-post-section">
+        <h2>Создать новый пост</h2>
+        <textarea id="post-text" placeholder="Что у вас нового?"></textarea>
+        <input type="file" id="post-image" accept="image/*" />
+        <button id="post-btn">Опубликовать</button>
+    </section>
+
+    <section id="feed-section">
+        <h2>Лента</h2>
+        <div id="posts-container">
+            <!-- Посты будут загружаться сюда -->
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2026 LAMPA COMMUNITY</p>
+</footer>
+
+<!-- Модальное окно для редактирования профиля -->
+<div id="edit-profile-modal" class="modal" style="display:none;">
+    <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <h2>Редактировать профиль</h2>
+        <label for="modal-username">Имя пользователя:</label>
+        <input type="text" id="modal-username" />
+        <label for="modal-bio">О себе:</label>
+        <textarea id="modal-bio"></textarea>
+        <button id="save-profile-btn">Сохранить</button>
+    </div>
+</div>
+
+<!-- Кнопки входа/регистрации в header -->
+<div class="auth-buttons" style="margin-top:10px;">
+    <button id="login-btn" class="btn btn-primary">Войти</button>
+    <button id="register-btn" class="btn btn-outline">Регистрация</button>
+</div>
+
+<!-- Модальное окно логина -->
+<div id="login-modal" class="modal" style="display:none;">
+    <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <h2>Вход в аккаунт</h2>
+        <div class="form-group">
+            <label for="login-username">Имя пользователя:</label>
+            <input type="text" id="login-username" placeholder="Логин" />
+        </div>
+        <div class="form-group">
+            <label for="login-password">Пароль:</label>
+            <input type="password" id="login-password" placeholder="Пароль" />
+        </div>
+        <button id="login-submit" class="btn btn-primary">Войти</button>
+        <p>Нет аккаунта? <a href="#" onclick="showRegisterModal(); return false;">Зарегистрироваться</a></p>
+    </div>
+</div>
+
+<!-- Модальное окно регистрации -->
+<div id="register-modal" class="modal" style="display:none;">
+    <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <h2>Регистрация</h2>
+        <div class="form-group">
+            <label for="register-username">Имя пользователя:</label>
+            <input type="text" id="register-username" placeholder="Придумайте логин" />
+        </div>
+        <div class="form-group">
+            <label for="register-password">Пароль:</label>
+            <input type="password" id="register-password" placeholder="Придумайте пароль" />
+        </div>
+        <button id="register-submit" class="btn btn-primary">Зарегистрироваться</button>
+        <p>Есть аккаунт? <a href="#" onclick="showLoginModal(); return false;">Войти</a></p>
+    </div>
+</div>
+
+<script src="script.js"></script> <!-- Подключаем JavaScript -->
+
+<!-- Внутри скрипта можно добавить функции для переключения модальных окон -->
+<script>
+    // Функции для управления отображением модальных окон
+    function showRegisterModal() {
+        document.getElementById('register-modal').style.display = 'flex';
+        document.getElementById('login-modal').style.display = 'none';
+    }
+
+    function showLoginModal() {
+        document.getElementById('login-modal').style.display = 'flex';
+        document.getElementById('register-modal').style.display = 'none';
+    }
+
+    // Обработчики закрытия модальных окон
+    document.querySelectorAll('.close-button').forEach(function(btn) {
+        btn.onclick = function() {
+            this.closest('.modal').style.display = 'none';
+        };
+    });
+</script>
+</body>
+</html>
